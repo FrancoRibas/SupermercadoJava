@@ -30,5 +30,13 @@ public class Producto {
 		this.precio = precio;
 	}
 	
-	
+	public boolean equals(Producto producto) {
+		return this.producto == producto.getProducto();
+	}
+	public boolean equals(String producto) {
+		return this.producto == producto;
+	}
+	public boolean equals(int id) {
+		return this.idProducto == id;
+	}
 }
