@@ -23,20 +23,23 @@ public class Supermercado {
 	public Producto traerProducto(String nombreProducto) {
 		Producto producto = null;
 		int indice = 0;
-		while (gondola.size() < indice && producto == null) {
-			if (gondola.get(indice).equals(nombreProducto)){
+		while (gondola.size() > indice && producto == null) {
+			if (gondola.get(indice).equals(nombreProducto)) {
 				producto = gondola.get(indice);
 			}
+			indice++;
 		}
 		return producto;
 	}
+
 	public Producto traerProducto(int idProducto) {
 		Producto producto = null;
 		int indice = 0;
-		while (gondola.size() < indice && producto == null) {
+		while (gondola.size() > indice && producto == null) {
 			if (gondola.get(indice).equals(idProducto)) {
 				producto = gondola.get(indice);
 			}
+			indice++;
 		}
 		return producto;
 	}
@@ -56,13 +59,12 @@ public class Supermercado {
 
 		return agregado;
 	}
-	
-	public boolean modificarProducto(int idProducto ,String producto, float precio) throws Exception {
+
+	public boolean modificarProducto(int idProducto, String producto, float precio) throws Exception {
 		boolean modificado = false;
 		if (!gondola.isEmpty()) {
-			Producto productoParaModificar = traerProducto(producto);
+			Producto productoParaModificar = traerProducto(idProducto);
 			if (productoParaModificar != null) {
-				productoParaModificar.setIdProducto(idProducto);
 				productoParaModificar.setProducto(producto);
 				productoParaModificar.setPrecio(precio);
 				modificado = true;
@@ -75,7 +77,7 @@ public class Supermercado {
 
 		return modificado;
 	}
-	
+
 	public boolean eliminarProducto(int idProducto) throws Exception {
 		boolean agregado = false;
 		if (!gondola.isEmpty()) {
@@ -89,10 +91,16 @@ public class Supermercado {
 		} else {
 			throw new Exception("ERROR: No hay productos en la lista");
 		}
-
 		return agregado;
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		String supermer = "Supermercado \n";
+		for (Producto p : gondola) {
+			supermer += p.toString() + "\n";
+		}
+		return supermer;
+	}
+
 }
