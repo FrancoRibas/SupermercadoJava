@@ -11,13 +11,16 @@ public class Carrito {
 	private LocalDate fecha;
 	private LocalTime hora;
 	private List<ItemCarrito> lstCarrito;
+	private Cliente cliente;
 
-	public Carrito(int idCarrito, LocalDate fecha, LocalTime hora, List<ItemCarrito> lstCarrito) {
+	public Carrito(int idCarrito, LocalDate fecha, LocalTime hora, List<ItemCarrito> lstCarrito, Cliente cliente) {
+
 		super();
 		this.idCarrito = idCarrito;
 		this.fecha = fecha;
 		this.hora = hora;
 		this.lstCarrito = lstCarrito;
+		this.cliente = cliente;
 	}
 
 	public int getIdCarrito() {
@@ -51,4 +54,14 @@ public class Carrito {
 	public void setLstCarrito(List<ItemCarrito> lstCarrito) {
 		this.lstCarrito = lstCarrito;
 	}
+
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 }
