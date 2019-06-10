@@ -44,5 +44,4 @@ public class Producto {
 	public String toString() {
 		return "Producto [idProducto = " + idProducto + ", producto = " + producto + ", precio = " + precio + "]";
 	}
-	
 }
