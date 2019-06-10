@@ -15,5 +15,29 @@ public class Supermercado {
 		this.admCliente = new AdmCliente(new ArrayList<Cliente>());
 		this.admCarrito = new AdmCarrito(new ArrayList<Carrito>());
 	}
+
+	public AdmProducto getAdmProducto() {
+		return admProducto;
+	}
+
+	public void setAdmProducto(AdmProducto admProducto) {
+		this.admProducto = admProducto;
+	}
+
+	public AdmCliente getAdmCliente() {
+		return admCliente;
+	}
+
+	public void setAdmCliente(AdmCliente admCliente) {
+		this.admCliente = admCliente;
+	}
+
+	public AdmCarrito getAdmCarrito() {
+		return admCarrito;
+	}
+
+	public void setAdmCarrito(AdmCarrito admCarrito) {
+		this.admCarrito = admCarrito;
+	}
 	
 	}

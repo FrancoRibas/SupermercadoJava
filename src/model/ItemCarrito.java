@@ -37,5 +37,10 @@ public class ItemCarrito {
 	public String toString() {
 		return "ItemCarrito [idItem = " + idItem + ", producto = " + producto + ", cantidad = " + cantidad + "]";
 	}
-	
+	public boolean equals(ItemCarrito item) {
+		return this.idItem == item.getIdItem();
+	}
+	public float calcularSubTotal() {
+		return this.producto.getPrecio()*this.cantidad;
+	}
 }

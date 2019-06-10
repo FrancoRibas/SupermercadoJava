@@ -55,7 +55,6 @@ public class Carrito {
 		this.lstCarrito = lstCarrito;
 	}
 
-
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -64,4 +63,64 @@ public class Carrito {
 		this.cliente = cliente;
 	}
 
+	public boolean equals(Carrito carro) {
+		return this.idCarrito == carro.getIdCarrito();
+	}
+
+	// ABM Item del Carrito
+
+	public ItemCarrito traerItemCarrito(Producto producto) {
+		ItemCarrito itemCarritoBuscado = null;
+		int indice = 0;
+		while (itemCarritoBuscado == null && this.lstCarrito.size() > indice) {
+			if (this.lstCarrito.get(indice).getProducto().equals(producto)) {
+				itemCarritoBuscado = this.lstCarrito.get(indice);
+			}
+		}
+		return itemCarritoBuscado;
+	}
+
+	public boolean agregarItme(Producto producto, int cantidad) {
+		boolean agregado = false;
+		ItemCarrito itemEnCarrito = traerItemCarrito(producto);
+		if (!this.lstCarrito.isEmpty()) {
+			if (itemEnCarrito == null) {
+				agregado = this.lstCarrito.add(new ItemCarrito(
+						this.lstCarrito.get(this.lstCarrito.size() - 1).getIdItem() + 1, producto, cantidad));
+			} else {
+				itemEnCarrito.setCantidad(cantidad + itemEnCarrito.getCantidad());
+			}
+		} else {
+			agregado = this.lstCarrito.add(new ItemCarrito(1, producto, cantidad));
+		}
+
+		return agregado;
+	}
+
+	public boolean eliminarItem(Producto producto, int cantidad) throws Exception {
+		boolean eliminado = false;
+		ItemCarrito itemEnCarrito = traerItemCarrito(producto);
+		if (!this.lstCarrito.isEmpty()) {
+			if (itemEnCarrito != null) {
+				if (itemEnCarrito.getCantidad() > cantidad) {
+					itemEnCarrito.setCantidad(itemEnCarrito.getCantidad() - cantidad);
+				} else {
+					this.lstCarrito.remove(itemEnCarrito);
+				}
+			} else {
+				throw new Exception("ERROR: El carrito no contiene el Item solucitado");
+			}
+		} else {
+			throw new Exception("ERROR: El carrito no contiene Items como para que se puedan eliminar");
+		}
+		return eliminado;
+	}
+
+	public float calcularTotal() {
+		float total = 0;
+		for (ItemCarrito carro : this.lstCarrito) {
+			total += carro.calcularSubTotal();
+		}
+		return total;
+	}
 }
