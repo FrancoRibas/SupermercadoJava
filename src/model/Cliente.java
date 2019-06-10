@@ -52,5 +52,13 @@ public class Cliente {
 		return "Cliente [idCliente=" + idCliente + ", cliente=" + cliente + ", dni=" + dni + ", direccion=" + direccion
 				+ "]";
 	}
-
+	
+	public boolean equals (Cliente cliente) {
+		return this.dni == cliente.getDni();
+	}
+	
+	public boolean equals (int id) {
+		return this.idCliente == id;
+	}
+	
 }

@@ -76,6 +76,7 @@ public class Carrito {
 			if (this.lstCarrito.get(indice).getProducto().equals(producto)) {
 				itemCarritoBuscado = this.lstCarrito.get(indice);
 			}
+			indice++;
 		}
 		return itemCarritoBuscado;
 	}
