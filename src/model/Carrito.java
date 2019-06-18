@@ -66,6 +66,10 @@ public class Carrito {
 	public boolean equals(Carrito carro) {
 		return this.idCarrito == carro.getIdCarrito();
 	}
+	
+	public boolean equals(int id) {
+		return this.idCarrito == id;
+	}
 
 	// ABM Item del Carrito
 
