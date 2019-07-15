@@ -66,9 +66,17 @@ public class Carrito {
 	public boolean equals(Carrito carro) {
 		return this.idCarrito == carro.getIdCarrito();
 	}
-	
+
 	public boolean equals(int id) {
 		return this.idCarrito == id;
+	}
+
+	public boolean equals(Cliente cliente) {
+		return this.getCliente().equals(cliente);
+	}
+
+	public boolean equals(LocalDate fecha) {
+		return this.getFecha().getMonthValue() == fecha.getMonthValue() && this.getFecha().getYear() == fecha.getYear();
 	}
 
 	// ABM Item del Carrito
@@ -123,8 +131,8 @@ public class Carrito {
 
 	public float calcularTotal() {
 		float total = 0;
-		for (ItemCarrito carro : this.lstCarrito) {
-			total += carro.calcularSubTotal();
+		for (ItemCarrito item : this.lstCarrito) {
+			total += item.calcularSubTotal();
 		}
 		return total;
 	}
