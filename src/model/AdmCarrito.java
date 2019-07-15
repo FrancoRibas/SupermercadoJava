@@ -44,6 +44,50 @@ public class AdmCarrito {
 		return carritoBuscado;
 	}
 
+	public Carrito traerCarrito(LocalDate fecha, LocalTime hora, Cliente cliente) {
+		Carrito carritoBuscado = null;
+		int indice = 0;
+		while (this.carritos.size() > indice && carritoBuscado == null) {
+			if (this.carritos.get(indice).equals(cliente, fecha, hora)) {
+				carritoBuscado = this.carritos.get(indice);
+			}
+			indice++;
+		}
+		return carritoBuscado;
+	}
+
+	public boolean agregarCarrito(LocalDate fecha, LocalTime hora, Cliente cliente) throws Exception {
+		boolean agregado = false;
+		Carrito carritoEnLista = traerCarrito(fecha, hora, cliente);
+		if (!carritos.isEmpty()) {
+			if (carritoEnLista == null) {
+				agregado = carritos
+						.add(new Carrito(carritos.get(carritos.size() - 1).getIdCarrito() + 1, fecha, hora, cliente));
+			} else {
+				throw new Exception("El cliente ya tiene un carrito registrado");
+			}
+		} else {
+			agregado = carritos.add(new Carrito(1, fecha, hora, cliente));
+		}
+
+		return agregado;
+	}
+
+	public boolean eliminarCarrito(int idCarrito) throws Exception {
+		boolean eliminado = false;
+		Carrito carritoEnLista = traerCarrito(idCarrito);
+		if (!carritos.isEmpty()) {
+			if (carritoEnLista != null) {
+				eliminado = carritos.remove(carritoEnLista);
+			} else {
+				throw new Exception("El carrito en cuestion no esta");
+			}
+		} else {
+			throw new Exception("La lista no continie Carritos que eliminar");
+		}
+		return eliminado;
+	}
+
 	public float calcularTotal(int idCliente) throws Exception {
 		Cliente c = new Cliente(idCliente, "", 0, "");
 		return calcularTotal(c);
@@ -79,8 +123,8 @@ public class AdmCarrito {
 		return total;
 	}
 	/*
-	public float calcularTotal() {
-
-	}
-	*/
+	 * public float calcularTotal() {
+	 * 
+	 * }
+	 */
 }

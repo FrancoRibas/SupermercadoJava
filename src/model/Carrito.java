@@ -13,13 +13,13 @@ public class Carrito {
 	private List<ItemCarrito> lstCarrito;
 	private Cliente cliente;
 
-	public Carrito(int idCarrito, LocalDate fecha, LocalTime hora, List<ItemCarrito> lstCarrito, Cliente cliente) {
+	public Carrito(int idCarrito, LocalDate fecha, LocalTime hora, Cliente cliente) {
 
 		super();
 		this.idCarrito = idCarrito;
 		this.fecha = fecha;
 		this.hora = hora;
-		this.lstCarrito = lstCarrito;
+		this.lstCarrito = new ArrayList<ItemCarrito>();
 		this.cliente = cliente;
 	}
 
@@ -78,7 +78,15 @@ public class Carrito {
 	public boolean equals(LocalDate fecha) {
 		return this.getFecha().getMonthValue() == fecha.getMonthValue() && this.getFecha().getYear() == fecha.getYear();
 	}
-
+	
+	public boolean equals(LocalTime hora) {
+		return this.getHora().getHour() == hora.getHour() && this.getHora().getMinute() == hora.getMinute();
+	}
+	
+	public boolean equals(Cliente cliente, LocalDate fecha, LocalTime hora) {
+		return equals(cliente) && equals(fecha) && equals(hora);
+	}
+	
 	// ABM Item del Carrito
 
 	public ItemCarrito traerItemCarrito(Producto producto) {
